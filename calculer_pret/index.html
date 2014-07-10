@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<title>Calculatrice</title>
+</head>
+<body>
+	
+		<p>Montant<br /><input type="text" id="montant"> €</p>
+		<p>Durée<br /><select name="duree" id="duree">
+			<option value="2">2</option>
+			<option value="5">5</option>
+			<option value="10">10</option>
+			<option value="15">15</option>
+			<option value="20">20</option>
+			<option value="25">25</option>
+			<option value="30">30</option>
+		</select> ans</p>
+		<p>Taux d'intérêt<br /><input type="text" id="interet">%</p>
+		<p>Taux d'assurance<br /><input type="text" id="assurance">%</p>
+		<p><input type="submit" value="Calculez" id="submit_button"></p>
+		<div id="output"></div>
+	
+
+	<script src="../calculator.js"></script>
+	<script>
+	submit_button.addEventListener('click', function(e){
+		var c = parseFloat(document.getElementById("montant").value),
+		n = parseInt(document.getElementById("duree").value * 12),
+		ti = percentageConverter(commasToPoints(document.getElementById("interet").value)),
+		ta =  percentageConverter(commasToPoints(document.getElementById("assurance").value))
+
+		var results = new Loan(c, n, ti, ta)
+
+		var mensuel_total = pointsToCommas(moneyRound(results.calculateMonthlyCombined()))
+
+		var mensuel_assurance = pointsToCommas(moneyRound(results.calculateMonthlyInsurance()))
+
+		var cout_total = pointsToCommas(moneyRound(results.calculateTotalCost()))
+
+		var assurance_total = pointsToCommas(moneyRound(results.calculateTotalInsurance()))
+
+		document.getElementById('output').innerHTML = 'Mensualités : ' + mensuel_total + ' € dont ' + mensuel_assurance + " € d'assurance<br />"
+
+		document.getElementById('output').innerHTML += 'Coût total : ' + cout_total + ' € dont ' + assurance_total + " € d'assurance"
+	})
+	</script>
+</body>
+</html>

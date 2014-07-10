@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculatrice</title>
+</head>
+<body>
+  
+    <p>Montant<br /><input type="text" id="mensualite"> €</p>
+    <p>Durée<br /><select name="duree" id="duree">
+      <option value="2">2</option>
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+      <option value="25">25</option>
+      <option value="30">30</option>
+    </select> ans</p>
+    <p>Taux d'intérêt<br /><input type="text" id="interet">%</p>
+    <!--<p>Taux d'assurance<br /><input type="text" id="assurance">%</p>-->
+    <p><input type="submit" value="Calculez" id="submit_button"></p>
+    <div id="output"></div>
+  
+
+  <script src="../calculator.js"></script>
+  <script>
+  submit_button.addEventListener('click', function(e){
+    var c = document.getElementById('mensualite').value,
+    n = (document.getElementById('duree').value * 12),
+    ti = percentageConverter(commasToPoints(document.getElementById('interet').value))
+
+  	var results = new AmountToBorrow(c, n, ti)
+
+    var montant_possible = pointsToCommas(moneyRound(results.calculateAmountPossible()))
+
+    document.getElementById('output').innerHTML = 'Vous pourrez emprunter ' + montant_possible + ' €'
+  })
+  </script>
+</body>
+</html>
