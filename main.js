@@ -6,6 +6,7 @@ function Loan(c, n, ti, ta){
 	this.taux_assurance = ta
 }
 
+// Public methods
 Loan.prototype.calculateTotalInsurance = function(){
 	return this.montant_pret * this.taux_assurance * (this.duree / 12)
 }
@@ -34,13 +35,14 @@ Loan.prototype.calculateTotalCost = function(){
 	return this.calculateTotalCombined() - this.montant_pret
 }
 
-// Amount to borrow with x per month
+// Amount to borrow with x per month object
 function AmountToBorrow(c, n, ti){
 	this.mensualite = c
 	this.duree = n
 	this.taux_interet = ti
 }
 
+// Public methods
 AmountToBorrow.prototype.calculateAmountPossible = function(){
 	return this.mensualite / ((this.taux_interet/12) * Math.pow(1 + (this.taux_interet/12), this.duree) / (Math.pow(1 + (this.taux_interet/12), this.duree) -1))
 }
