@@ -6,5 +6,3 @@ Small JS app that allows you to enter information about real estate loans and gi
 Info to enter: period of time, interest rate, insurance rate.
 
 Info returned: total cost of loan, monthly cost of loan, monthly insurance cost, total insurance cost.
-
-main file: calculator.js
